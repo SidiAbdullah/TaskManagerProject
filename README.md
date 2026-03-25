@@ -5,7 +5,7 @@ A simple and modern task manager built with HTML, CSS, and JavaScript, using Ind
 
 ✨ Features
 
-Add / Delete tasks
+## Add / Delete tasks
 Mark tasks as Pending or Done
 Live search (title + description)
 Filter tasks (All / Pending / Done)
