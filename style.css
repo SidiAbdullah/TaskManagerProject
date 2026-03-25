@@ -1,0 +1,271 @@
+/* =========================================================
+         ✅ Global / Base
+         ========================================================= */
+:root {
+  color-scheme: dark;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 24px;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+  background: #0b1020;
+  color: #e9eefc;
+}
+
+/* =========================================================
+         ✅ Layout containers
+         ========================================================= */
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 16px;
+}
+h1 {
+  font-size: 18px;
+  margin: 0;
+}
+.muted {
+  opacity: 0.75;
+}
+
+/* ✅ Top area (title + stats/buttons) */
+.topbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+/* ✅ Shared row layout (buttons + inputs) */
+.row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ✅ 2-column layout: left form | right list */
+.grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.15fr;
+  gap: 12px;
+}
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+         ✅ Form controls
+         ========================================================= */
+input,
+textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #e9eefc;
+  border-radius: 12px;
+  padding: 10px 12px;
+  outline: none;
+}
+textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+label {
+  font-size: 12px;
+  opacity: 0.85;
+  display: block;
+  margin: 10px 0 6px;
+}
+
+/* =========================================================
+         ✅ Buttons
+         ========================================================= */
+button {
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  background: #4f7cff;
+  color: white;
+  font-weight: 800;
+}
+button.secondary {
+  background: rgba(255, 255, 255, 0.12);
+}
+button.danger {
+  background: #ff4f6d;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+         ✅ Pills (small badges)
+         ========================================================= */
+.pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  opacity: 0.9;
+}
+
+/* =========================================================
+         ✅ Filters
+         ========================================================= */
+.filters button {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+.filters button.active {
+  outline: 2px solid rgba(79, 124, 255, 0.65);
+}
+
+/* =========================================================
+         ✅ Loading spinner + status
+         ========================================================= */
+.status {
+  display: none;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+.spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: white;
+  animation: spin 0.85s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+         ✅ Error box
+         ========================================================= */
+.error {
+  display: none;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 79, 109, 0.45);
+  background: rgba(255, 79, 109, 0.12);
+  line-height: 1.4;
+}
+
+/* =========================================================
+         ✅ Tasks list + cards
+         ========================================================= */
+.list {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+.empty {
+  padding: 14px;
+  opacity: 0.8;
+  border-radius: 14px;
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+}
+
+/* ✅ Each task card */
+.task {
+  border-radius: 16px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: start;
+}
+
+/* ✅ Status color: Pending = yellow */
+.task.pending {
+  background: rgba(255, 214, 79, 0.14);
+  border-color: rgba(255, 214, 79, 0.3);
+}
+
+/* ✅ Status color: Done = green */
+.task.done {
+  background: rgba(79, 255, 154, 0.12);
+  border-color: rgba(79, 255, 154, 0.28);
+}
+
+.task h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 950;
+  letter-spacing: 0.2px;
+}
+
+.task p {
+  margin: 0;
+  opacity: 0.85;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ✅ Small info row (id, status, date) */
+.meta {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ✅ Card action buttons */
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.actions button {
+  padding: 8px 10px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* =========================================================
+         ✅ Toast popup (bottom-right)
+         ========================================================= */
+.toast {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  padding: 12px 14px;
+  border-radius: 14px;
+  display: none;
+  max-width: 380px;
+  line-height: 1.35;
+}
