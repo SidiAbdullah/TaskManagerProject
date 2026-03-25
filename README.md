@@ -28,8 +28,7 @@ JavaScript (Vanilla)
 IndexedDB
 📦 Project Link
 
-GitHub repository:
-GitHub → https://github.com/SidiAbdullah/TaskManagerProject
+https://github.com/SidiAbdullah/TaskManagerProject
 
 🎯 Purpose
 
