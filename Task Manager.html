@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- ✅ Responsive layout on mobile/tablet -->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Task Manager — IndexedDB (One Page)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <div class="card">
+        <!--──────────────────────────────────────────────
+      │ Code Overview
+      │ Purpose        → One-page Task Manager (CRUD) using IndexedDB (no frameworks)
+      │ Layout         → Topbar (stats/search/filters) | Left (Add form) | Right (Task cards)
+      │ Use Cases      → IndexedDB open/upgrade, transactions, async/await wrappers, UI state, filtering/search
+      │ Key Properties → TaskDB v1, store "tasks" (keyPath id autoIncrement), indexes (status, createdAt)
+      │ Notes          → Pending cards = Yellow | Done cards = Green | Delete uses confirm()
+      └──────────────────────────────────────────────-->
+
+        <div class="topbar">
+          <div>
+            <h1>Task Manager (IndexedDB)</h1>
+            <div class="muted">
+              One page • Modern UI • Persisted locally (refresh-safe)
+            </div>
+          </div>
+
+          <div class="row">
+            <span class="pill" id="stats">Total: 0 • Pending: 0 • Done: 0</span>
+            <button class="secondary" id="btnSeed">Seed</button>
+            <button class="secondary" id="btnClearAll">Clear All</button>
+          </div>
+        </div>
+
+        <div
+          class="row"
+          style="justify-content: space-between; margin-bottom: 10px"
+        >
+          <!-- ✅ Filters -->
+          <div class="row filters" id="filters">
+            <button class="secondary active" data-filter="all">All</button>
+            <button class="secondary" data-filter="pending">Pending</button>
+            <button class="secondary" data-filter="done">Done</button>
+          </div>
+
+          <!-- ✅ Search -->
+          <div class="row" style="min-width: 280px">
+            <input id="search" placeholder="Search title/description…" />
+          </div>
+        </div>
+
+        <!-- ✅ Loading indicator -->
+        <div class="status muted" id="loading">
+          <div class="spinner"></div>
+          <div>Loading…</div>
+        </div>
+
+        <!-- ✅ Error container -->
+        <div class="error" id="error"></div>
+
+        <div class="grid" style="margin-top: 12px">
+          <!-- ======================================================
+               ✅ LEFT: Add Task form
+               ====================================================== -->
+          <section class="card" style="padding: 14px">
+            <strong>Add New Task</strong>
+            <div class="muted" style="margin-top: 6px">
+              Pending tasks are <span class="pill">Yellow</span>. Mark done to
+              turn <span class="pill">Green</span>.
+            </div>
+
+            <label for="title">Title (required)</label>
+            <input
+              id="title"
+              maxlength="80"
+              placeholder="e.g., Record DOM lesson video"
+            />
+
+            <label for="desc">Description (optional, max 300)</label>
+            <textarea
+              id="desc"
+              maxlength="300"
+              placeholder="Details…"
+            ></textarea>
+
+            <div
+              class="row"
+              style="justify-content: flex-end; margin-top: 12px"
+            >
+              <button class="secondary" id="btnReset">Reset</button>
+              <button id="btnAdd">Add Task</button>
+            </div>
+
+            <div class="muted" style="margin-top: 10px">
+              Tip: Press <span class="pill">Ctrl</span> +
+              <span class="pill">Enter</span> to add quickly.
+            </div>
+          </section>
+
+          <!-- ======================================================
+               ✅ RIGHT: Tasks list
+               ====================================================== -->
+          <section>
+            <div class="row" style="justify-content: space-between">
+              <div class="row">
+                <strong>Tasks</strong>
+                <span class="muted" id="shown"></span>
+              </div>
+            </div>
+
+            <div class="list" id="list"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ Toast popup -->
+    <div class="toast" id="toast"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
