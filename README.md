@@ -4,6 +4,7 @@
 A simple and modern task manager built with HTML, CSS, and JavaScript, using IndexedDB for local persistent storage.
 
 ✨ Features
+
 Add / Delete tasks
 Mark tasks as Pending or Done
 Live search (title + description)
